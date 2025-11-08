@@ -1,3 +1,15 @@
+/**
+ * EmptyState Component
+ *
+ * Displays a friendly message when the task list is empty.
+ * Provides visual feedback and guidance to users on how to get started.
+ *
+ * Design:
+ * - Large icon in gradient circle
+ * - Encouraging message
+ * - Instructional subtext
+ */
+
 import { createHomeStyles } from "@/assets/styles/home.styles";
 import useTheme from "@/hooks/useTheme";
 import { Ionicons } from "@expo/vector-icons";

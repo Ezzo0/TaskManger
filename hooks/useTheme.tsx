@@ -1,34 +1,60 @@
+/**
+ * Theme Management Hook
+ *
+ * Provides theme switching functionality with light and dark mode support.
+ * Uses React Context API to share theme state across the application.
+ *
+ * Features:
+ * - Light and dark color schemes
+ * - Gradient color system for modern UI
+ * - System color scheme detection
+ * - Manual theme toggle
+ */
+
 import { createContext, ReactNode, useContext, useState } from "react";
 import { useColorScheme } from "react-native";
 
+/**
+ * ColorScheme interface defining all theme colors and gradients
+ *
+ * Structure:
+ * - Base colors: bg, surface, text, borders
+ * - Semantic colors: primary, success, warning, danger
+ * - Gradients: Two-color arrays for LinearGradient components
+ * - Special backgrounds: Input fields with theme-specific colors
+ */
 export interface ColorScheme {
-  bg: string;
-  surface: string;
-  text: string;
-  textMuted: string;
-  border: string;
-  primary: string;
-  success: string;
-  warning: string;
-  danger: string;
-  shadow: string;
+  bg: string; // Main background color
+  surface: string; // Card/surface background color
+  text: string; // Primary text color
+  textMuted: string; // Secondary/muted text color
+  border: string; // Border and divider color
+  primary: string; // Primary brand color (blue)
+  success: string; // Success state color (green)
+  warning: string; // Warning state color (orange)
+  danger: string; // Danger/error state color (red)
+  shadow: string; // Shadow color
   gradients: {
-    background: [string, string];
-    surface: [string, string];
-    primary: [string, string];
-    success: [string, string];
-    warning: [string, string];
-    danger: [string, string];
-    muted: [string, string];
-    empty: [string, string];
+    background: [string, string]; // Main background gradient
+    surface: [string, string]; // Card surface gradient
+    primary: [string, string]; // Primary action gradient
+    success: [string, string]; // Success state gradient
+    warning: [string, string]; // Warning state gradient
+    danger: [string, string]; // Danger state gradient
+    muted: [string, string]; // Muted/disabled gradient
+    empty: [string, string]; // Empty state gradient
   };
   backgrounds: {
-    input: string;
-    editInput: string;
+    input: string; // Task input field background
+    editInput: string; // Edit mode input background
   };
-  statusBarStyle: "light-content" | "dark-content";
+  statusBarStyle: "light-content" | "dark-content"; // Status bar text color
 }
 
+/**
+ * Light theme color scheme
+ * Based on Tailwind CSS color palette with custom gradients
+ */
 const lightColors: ColorScheme = {
   bg: "#f8fafc",
   surface: "#ffffff",
@@ -57,6 +83,10 @@ const lightColors: ColorScheme = {
   statusBarStyle: "dark-content" as const,
 };
 
+/**
+ * Dark theme color scheme
+ * Based on Tailwind CSS slate palette with enhanced contrast
+ */
 const darkColors: ColorScheme = {
   bg: "#0f172a",
   surface: "#1e293b",
@@ -85,6 +115,9 @@ const darkColors: ColorScheme = {
   statusBarStyle: "light-content" as const,
 };
 
+/**
+ * Context type defining theme state and operations
+ */
 interface ThemeContextType {
   isDarkMode: boolean;
   toggleDarkMode: () => void;
@@ -93,14 +126,27 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<undefined | ThemeContextType>(undefined);
 
+/**
+ * ThemeProvider Component
+ *
+ * Wraps the application to provide theme state and color schemes to all child components.
+ * Automatically detects system color scheme on initial load.
+ *
+ * @param {ReactNode} children - Child components that need access to theme context
+ */
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+  // Detect the system's color scheme preference (light/dark)
   const systemColorScheme = useColorScheme();
   const [isDarkMode, setIsDarkMode] = useState(systemColorScheme === "dark");
 
+  /**
+   * Toggles between light and dark mode
+   */
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev);
   };
 
+  // Select the appropriate color scheme based on current mode
   const colors = isDarkMode ? darkColors : lightColors;
 
   return (
@@ -110,6 +156,28 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+/**
+ * Custom hook to access theme functionality
+ *
+ * Must be used within a component wrapped by ThemeProvider.
+ * Provides access to current theme colors and toggle function.
+ *
+ * @returns {ThemeContextType} Object containing isDarkMode, toggleDarkMode, and colors
+ * @throws {Error} If used outside of ThemeProvider
+ *
+ * @example
+ * ```tsx
+ * function MyComponent() {
+ *   const { colors, isDarkMode, toggleDarkMode } = useTheme();
+ *
+ *   return (
+ *     <View style={{ backgroundColor: colors.bg }}>
+ *       <Text style={{ color: colors.text }}>Hello</Text>
+ *     </View>
+ *   );
+ * }
+ * ```
+ */
 const useTheme = () => {
   const context = useContext(ThemeContext);
   if (context === undefined) {

@@ -1,3 +1,19 @@
+/**
+ * Preferences Component
+ *
+ * Displays user preferences and app management options in the settings screen.
+ *
+ * Features:
+ * - Dark mode toggle switch
+ * - Clear all tasks button with confirmation
+ * - Gradient styling for visual consistency
+ *
+ * Business Logic:
+ * - Dark mode toggle is instant (no confirmation needed)
+ * - Clear all tasks requires double confirmation to prevent data loss
+ * - Shows success message with count of deleted tasks
+ */
+
 import { createSettingsStyles } from "@/assets/styles/settings.styles";
 import useTasks from "@/hooks/useTasks";
 import useTheme from "@/hooks/useTheme";
@@ -12,6 +28,13 @@ const Preferences = () => {
 
   const { clearAllTasks } = useTasks();
 
+  /**
+   * Handles clearing all tasks with confirmation dialog
+   *
+   * Safety: Shows warning dialog before deletion
+   * Feedback: Displays success message with count of deleted tasks
+   * Error Handling: Shows error alert if operation fails
+   */
   const handleResetApp = () => {
     Alert.alert(
       "Clear All Tasks",

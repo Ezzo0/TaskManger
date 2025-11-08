@@ -1,3 +1,17 @@
+/**
+ * Header Component
+ *
+ * Displays the main header for the tasks screen with:
+ * - App title and icon
+ * - Task completion statistics
+ * - Visual progress bar
+ *
+ * Progress Calculation:
+ * - Shows "X of Y completed" text
+ * - Displays percentage-based progress bar
+ * - Hides progress info when no tasks exist
+ */
+
 import { createHomeStyles } from "@/assets/styles/home.styles";
 import useTasks from "@/hooks/useTasks";
 import useTheme from "@/hooks/useTheme";
@@ -12,6 +26,7 @@ const Header = () => {
 
   const { tasks } = useTasks();
 
+  // Calculate task completion statistics
   const completedCount = tasks
     ? tasks.filter((task) => task.completed).length
     : 0;

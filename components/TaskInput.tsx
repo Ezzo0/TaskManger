@@ -1,3 +1,19 @@
+/**
+ * TaskInput Component
+ *
+ * Provides an input field for creating new tasks with:
+ * - Text input with placeholder
+ * - Add button with gradient styling
+ * - Input validation (trims whitespace)
+ * - Disabled state when input is empty
+ * - Keyboard submit handling (Enter/Return key)
+ *
+ * Validation:
+ * - Only allows non-empty tasks (after trimming whitespace)
+ * - Button is visually disabled when input is empty
+ * - Clears input after successful task creation
+ */
+
 import { createHomeStyles } from "@/assets/styles/home.styles";
 import useTasks from "@/hooks/useTasks";
 import useTheme from "@/hooks/useTheme";
@@ -13,11 +29,17 @@ const TodoInput = () => {
   const [newTodo, setNewTodo] = useState("");
   const { addTask } = useTasks();
 
+  /**
+   * Handles adding a new task
+   *
+   * Validation: Only adds task if input is not empty after trimming
+   * Side effects: Clears input field on success
+   */
   const handleAddTodo = () => {
     if (newTodo.trim()) {
       try {
         addTask(newTodo.trim());
-        setNewTodo("");
+        setNewTodo(""); // Clear input after successful addition
       } catch (error) {
         console.log("Error adding a todo", error);
         Alert.alert("Error", "Failed to add todo");

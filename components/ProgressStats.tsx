@@ -1,3 +1,20 @@
+/**
+ * ProgressStats Component
+ *
+ * Displays task statistics in the settings screen.
+ * Shows three key metrics in visually distinct cards.
+ *
+ * Metrics:
+ * - Total Tasks: All tasks (completed + active)
+ * - Completed Tasks: Tasks marked as done
+ * - Active Tasks: Tasks still pending (calculated as total - completed)
+ *
+ * Design:
+ * - Each metric has a colored left border for visual distinction
+ * - Icons with gradient backgrounds matching the metric type
+ * - Large numbers for easy readability
+ */
+
 import { createSettingsStyles } from "@/assets/styles/settings.styles";
 import useTasks from "@/hooks/useTasks";
 import useTheme from "@/hooks/useTheme";
@@ -11,6 +28,7 @@ const ProgressStats = () => {
 
   const { tasks } = useTasks();
 
+  // Calculate task statistics
   const totalTasks = tasks ? tasks.length : 0;
   const completedTasks = tasks
     ? tasks.filter((task) => task.completed).length

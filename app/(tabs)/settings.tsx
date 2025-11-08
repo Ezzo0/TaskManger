@@ -1,3 +1,20 @@
+/**
+ * Settings Screen
+ *
+ * Displays app settings, preferences, and task statistics.
+ * Allows users to customize their experience and manage app data.
+ *
+ * Features:
+ * - Progress statistics (total, completed, active tasks)
+ * - Dark mode toggle
+ * - Clear all tasks functionality
+ *
+ * Layout Structure:
+ * - LinearGradient background
+ * - Custom header with icon
+ * - Scrollable content with sections
+ */
+
 import { createSettingsStyles } from "@/assets/styles/settings.styles";
 import Preferences from "@/components/Preferences";
 import ProgressStats from "@/components/ProgressStats";
@@ -19,7 +36,7 @@ const SettingsScreen = () => {
       style={settingsStyles.container}
     >
       <SafeAreaView style={settingsStyles.safeArea}>
-        {/* HEADER */}
+        {/* Header Section */}
         <View style={settingsStyles.header}>
           <View style={settingsStyles.titleContainer}>
             <LinearGradient
