@@ -1,4 +1,4 @@
-# 📱 Task Manager App
+# Task Manager App
 
 A modern, feature-rich task management application built with React Native and Expo. This app provides an intuitive interface for managing daily tasks with a beautiful gradient-based design and theme support.
 
@@ -6,19 +6,19 @@ A modern, feature-rich task management application built with React Native and E
 ![Expo](https://img.shields.io/badge/Expo-~54.0-000020)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9.2-blue)
 
-## ✨ Features
+## Features
 
-- ✅ **Add Tasks** - Create new tasks with descriptions
-- ✅ **Mark Complete/Incomplete** - Toggle task completion status
-- ✅ **Delete Tasks** - Remove tasks with confirmation dialog
-- ✅ **Edit Tasks** - Modify existing task descriptions inline
-- ✅ **Progress Tracking** - Visual progress bar showing completion percentage
-- ✅ **Smart Sorting** - Incomplete tasks appear first, completed tasks at bottom
-- ✅ **Theme Support** - Light and Dark mode
-- ✅ **Empty State** - Friendly UI when no tasks exist
-- ✅ **Visual Feedback** - Smooth animations and gradient effects
+- **Add Tasks** - Create new tasks with descriptions
+- **Mark Complete/Incomplete** - Toggle task completion status
+- **Delete Tasks** - Remove tasks with confirmation dialog
+- **Edit Tasks** - Modify existing task descriptions inline
+- **Progress Tracking** - Visual progress bar showing completion percentage
+- **Smart Sorting** - Incomplete tasks appear first, completed tasks at bottom
+- **Theme Support** - Light and Dark mode
+- **Empty State** - Friendly UI when no tasks exist
+- **Visual Feedback** - Smooth animations and gradient effects
 
-## 📸 Screenshots
+## Screenshots
 
 <div align="center">
 
@@ -44,7 +44,7 @@ A modern, feature-rich task management application built with React Native and E
 
 </div>
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -88,7 +88,7 @@ Before running this project, ensure you have the following installed:
    - **Android Emulator**: Press `a` in the terminal
    - **Web Browser**: Press `w` in the terminal
 
-## 📱 How to Use
+## How to Use
 
 1. **Adding a Task**
 
@@ -117,7 +117,7 @@ Before running this project, ensure you have the following installed:
    - Check the progress bar at the top
    - See completion percentage and task count
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 TaskManger/
@@ -143,7 +143,7 @@ TaskManger/
 └── README.md
 ```
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Core Technologies
 
@@ -163,7 +163,7 @@ TaskManger/
 | **react-native-safe-area-context** | Safe area handling for different devices       |
 | **expo-haptics**                   | Haptic feedback for better UX                  |
 
-## 🏛️ Architecture
+## Architecture
 
 This app uses a modern React Native architecture:
 
@@ -191,7 +191,7 @@ The `useTasks` hook provides centralized state management for all task operation
 - `deleteTask()` - Remove task
 - `clearAllTasks()` - Clear all tasks
 
-## 🎨 Features Highlights
+## Features Highlights
 
 ### Smart Task Sorting
 
@@ -216,35 +216,3 @@ Robust error handling throughout the app:
 ### Theme Support
 
 Built-in light and dark mode support with smooth transitions and consistent color schemes.
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Issue**: Metro bundler won't start
-
-```bash
-# Solution: Clear cache and restart
-npx expo start -c
-```
-
-**Issue**: Module not found errors
-
-```bash
-# Solution: Reinstall dependencies
-rm -rf node_modules
-npm install
-```
-
-**Issue**: App won't load on device
-
-- Ensure your device and computer are on the same WiFi network
-- Check that Expo Go app is up to date
-- Try restarting the Expo development server
-
-**Issue**: TypeScript errors
-
-```bash
-# Solution: Rebuild TypeScript
-npx tsc --noEmit
-```
